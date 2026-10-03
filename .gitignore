@@ -1,0 +1,18 @@
+.gradle/
+gradle/
+build/
+out/
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+
+# Local application data
+/data/*.mv.db
+/data/*.trace.db
+/data/*.lock.db
+/data/*.temp.db
+
+bootrun.log
+*.log

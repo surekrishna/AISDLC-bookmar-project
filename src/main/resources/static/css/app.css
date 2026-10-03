@@ -1,0 +1,167 @@
+:root {
+	--page-bg: #f8fafc;
+	--surface-bg: #ffffff;
+	--border: #cbd5e1;
+	--text: #1f2937;
+	--link: #0f5db8;
+	--success-bg: #ecfdf5;
+	--success-border: #15803d;
+	--success-text: #166534;
+	--error-bg: #fef2f2;
+	--error-border: #b91c1c;
+	--error-text: #7f1d1d;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	line-height: 1.5;
+	background: var(--page-bg);
+	color: var(--text);
+}
+
+a {
+	color: var(--link);
+}
+
+a:hover,
+a:focus {
+	text-decoration: underline;
+}
+
+main.page {
+	max-width: 60rem;
+	margin: 0 auto;
+	padding: 2rem 1rem 3rem;
+}
+
+.page-header {
+	margin-bottom: 1.5rem;
+}
+
+.message,
+.form-message,
+.empty-state {
+	border-radius: 0.5rem;
+	padding: 0.75rem 1rem;
+	margin: 1rem 0 0;
+}
+
+.message--success {
+	background: var(--success-bg);
+	border-left: 0.25rem solid var(--success-border);
+	color: var(--success-text);
+	font-weight: 600;
+}
+
+.form-message--error,
+.message--error {
+	background: var(--error-bg);
+	border-left: 0.25rem solid var(--error-border);
+	color: var(--error-text);
+	font-weight: 700;
+}
+
+.form-help {
+	margin: 0.35rem 0 0;
+	color: #475569;
+}
+
+form {
+	max-width: 42rem;
+	background: var(--surface-bg);
+	border: 1px solid var(--border);
+	border-radius: 0.75rem;
+	padding: 1.25rem;
+}
+
+.field {
+	margin-bottom: 1rem;
+}
+
+label {
+	display: inline-block;
+	margin-bottom: 0.35rem;
+	font-weight: 600;
+}
+
+input,
+textarea {
+	width: 100%;
+	padding: 0.75rem;
+	border: 1px solid var(--border);
+	border-radius: 0.5rem;
+	font: inherit;
+	background: var(--surface-bg);
+	color: var(--text);
+}
+
+textarea {
+	resize: vertical;
+}
+
+.actions {
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+	margin-top: 1.25rem;
+}
+
+button,
+.button-link {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 2.5rem;
+	padding: 0.625rem 1rem;
+	border-radius: 0.5rem;
+	font: inherit;
+	text-decoration: none;
+}
+
+button {
+	border: 0;
+	background: #1d4ed8;
+	color: #ffffff;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.button-link {
+	border: 1px solid var(--border);
+	background: #ffffff;
+	color: var(--text);
+}
+
+.bookmark-list {
+	display: grid;
+	gap: 1rem;
+}
+
+.bookmark-card {
+	background: var(--surface-bg);
+	border: 1px solid var(--border);
+	border-radius: 0.75rem;
+	padding: 1rem 1.25rem;
+}
+
+.bookmark-card h2 {
+	margin: 0 0 0.75rem;
+	font-size: 1.15rem;
+}
+
+.bookmark-meta,
+.bookmark-tags {
+	margin: 0.25rem 0;
+}
+
+.empty-state {
+	background: var(--surface-bg);
+	border: 1px dashed var(--border);
+	font-weight: 600;
+}
+
