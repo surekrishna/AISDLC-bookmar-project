@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Personal Bookmark Manager</title>
+	<link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+	<main class="page">
+		<header class="page-header">
+		<h1>Personal Bookmark Manager</h1>
+			<p th:if="${successMessage}" class="message message--success" th:text="${successMessage}"></p>
+			<p>
+				<a th:href="@{/bookmarks/new(search=${searchText}, tag=${selectedTag})}">Add bookmark</a>
+			</p>
+		</header>
+
+		<form th:action="@{/bookmarks}" method="get" class="bookmark-filter-form">
+			<div class="field">
+				<label for="search">Search</label>
+				<input id="search" name="search" type="text" th:value="${searchText}" autocomplete="off">
+			</div>
+
+			<div class="field">
+				<label for="tag">Tag</label>
+				<select id="tag" name="tag">
+					<option value="" th:selected="${selectedTag == ''}">All tags</option>
+					<option th:each="tagOption : ${availableTags}" th:value="${tagOption}" th:text="${tagOption}" th:selected="${tagOption == selectedTag}"></option>
+				</select>
+			</div>
+
+			<div class="actions">
+				<button type="submit">Search</button>
+				<a class="button-link" th:href="@{/bookmarks}">Clear search and filters</a>
+			</div>
+		</form>
+
+		<section th:if="${!hasBookmarks}" class="empty-state" aria-live="polite">
+			<p>No bookmarks yet. Add your first bookmark.</p>
+		</section>
+
+		<section th:if="${hasBookmarks and #lists.isEmpty(bookmarks)}" class="empty-state" aria-live="polite">
+			<p>No matching bookmarks found.</p>
+		</section>
+
+		<section th:if="${!#lists.isEmpty(bookmarks)}" class="bookmark-list" aria-label="Saved bookmarks">
+			<article th:each="bookmark : ${bookmarks}" class="bookmark-card">
+				<h2 th:text="${bookmark.title}"></h2>
+				<p class="bookmark-meta">
+					<strong>URL:</strong>
+					<a th:href="${bookmark.url}" th:text="${bookmark.url}"></a>
+				</p>
+				<p class="bookmark-tags">
+					<strong>Tags:</strong>
+					<span th:if="${#lists.isEmpty(bookmark.tags)}">No tags</span>
+					<span th:unless="${#lists.isEmpty(bookmark.tags)}" th:text="${#strings.listJoin(bookmark.tags.![value], ', ')}"></span>
+				</p>
+				<p>
+					<a th:href="@{/bookmarks/{id}/edit(id=${bookmark.id}, search=${searchText}, tag=${selectedTag})}">Edit</a>
+					<span> | </span>
+					<a th:href="@{/bookmarks/{id}/delete(id=${bookmark.id}, search=${searchText}, tag=${selectedTag})}">Delete</a>
+				</p>
+			</article>
+		</section>
+	</main>
+</body>
+</html>
+

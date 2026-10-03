@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title th:text="${bookmarkForm.id == null ? 'Add Bookmark' : 'Edit Bookmark'}">Add Bookmark</title>
+	<link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+	<main class="page">
+		<h1 th:text="${bookmarkForm.id == null ? 'Add bookmark' : 'Edit bookmark'}">Add bookmark</h1>
+
+		<form th:action="${formAction}" th:object="${bookmarkForm}" method="post" novalidate>
+			<p th:if="${#fields.hasErrors('url') or #fields.hasErrors('title')}" class="form-message form-message--error" role="alert">
+				Please fix the errors below.
+			</p>
+
+			<input th:if="${bookmarkForm.id != null}" type="hidden" th:field="*{id}">
+
+			<div class="field">
+				<label for="url">URL</label>
+				<input id="url" type="text" th:field="*{url}" autocomplete="url">
+				<p th:if="${#fields.hasErrors('url')}" th:errors="*{url}" class="form-message form-message--error" role="alert"></p>
+			</div>
+
+			<div class="field">
+				<label for="title">Title</label>
+				<input id="title" type="text" th:field="*{title}" autocomplete="off">
+				<p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="form-message form-message--error" role="alert"></p>
+			</div>
+
+			<div class="field">
+				<label for="tags">Tags</label>
+				<textarea id="tags" th:field="*{tags}" rows="3"></textarea>
+				<p class="form-help">Comma-separated; optional.</p>
+			</div>
+
+			<div class="actions">
+				<button type="submit" th:text="${bookmarkForm.id == null ? 'Save bookmark' : 'Save changes'}">Save bookmark</button>
+				<a class="button-link" th:href="${cancelUrl}">Cancel</a>
+			</div>
+		</form>
+	</main>
+</body>
+</html>
+

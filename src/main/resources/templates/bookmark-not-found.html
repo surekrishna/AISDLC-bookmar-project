@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Bookmark not found</title>
+	<link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+	<main class="page">
+		<section class="empty-state" aria-live="polite">
+			<h1>Bookmark not found</h1>
+			<p th:text="${message}">Bookmark not found.</p>
+			<p><a th:href="@{/bookmarks}">Back to bookmarks</a></p>
+		</section>
+	</main>
+</body>
+</html>
+

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Delete bookmark</title>
+	<link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+	<main class="page">
+		<section class="bookmark-card">
+			<h1>Delete bookmark</h1>
+			<p>Are you sure you want to delete this bookmark?</p>
+			<p><strong>Title:</strong> <span th:text="${bookmark.title}">Bookmark title</span></p>
+			<p><strong>URL:</strong> <span th:text="${bookmark.url}">https://example.com</span></p>
+			<form th:action="${deleteAction}" method="post" novalidate>
+				<div class="actions">
+					<button type="submit">Confirm delete</button>
+					<a class="button-link" th:href="${cancelUrl}">Cancel</a>
+				</div>
+			</form>
+		</section>
+	</main>
+</body>
+</html>
+
+
